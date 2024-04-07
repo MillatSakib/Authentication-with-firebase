@@ -8,11 +8,12 @@ import Home from "./Home/Home.jsx";
 import Nav from "./Navigation/Nav.jsx";
 import Login from "./Authentication/Login/Login.jsx";
 import Register from "./Authentication/Register/Register.jsx";
+import AppBody from "./AppBody.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Nav></Nav>,
+    element: <AppBody></AppBody>,
     children: [
       {
         path: "/",

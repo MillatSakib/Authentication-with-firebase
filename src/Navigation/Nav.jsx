@@ -46,9 +46,12 @@ const Nav = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl text-blue-500 font-bold">
+          <NavLink
+            to="/"
+            className="btn btn-ghost text-2xl text-blue-500 font-bold"
+          >
             F-Auth
-          </a>
+          </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -82,7 +85,6 @@ const Nav = () => {
           </NavLink>
         </div>
       </div>
-      <Outlet></Outlet>
     </div>
   );
 };

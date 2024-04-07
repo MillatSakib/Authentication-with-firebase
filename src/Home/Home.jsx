@@ -7,7 +7,7 @@ const Home = () => {
       <Helmet>
         <title>F-Auth - Home</title>
       </Helmet>
-      <div>This is login page.</div>
+      <div>This is Home page.</div>
     </HelmetProvider>
   );
 };
