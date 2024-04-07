@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { Router, RouterProvider, createBrowserRouter } from "react-router-dom";
-import Nav from "./Nav.jsx";
-import Login from "./Login.jsx";
-import Register from "./Register.jsx";
-import Home from "./Home.jsx";
+import AuthProvider from "./AuthProvider.jsx";
+import Home from "./Home/Home.jsx";
+import Nav from "./Navigation/Nav.jsx";
+import Login from "./Authentication/Login/Login.jsx";
+import Register from "./Authentication/Register/Register.jsx";
 
 const router = createBrowserRouter([
   {
