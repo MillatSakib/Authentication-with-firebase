@@ -1,25 +1,43 @@
+import { useContext, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { NavLink } from "react-router-dom";
-// import { AuthContext } from "./AuthProvider";
+import AuthProvider, { AuthContext } from "../../AuthProvider";
 
 const Register = () => {
-  // const { createUsers } = useContext(AuthContext);
+  const [passError, setPassError] = useState("");
+  const { registerUser } = useContext(AuthContext);
 
-  // const handleRegister = (e) => {
-  //   e.preventDefault();
-  //   const name = e.target.name.value;
-  //   const email = e.target.email.value;
-  //   const password = e.target.password.value;
-  //   console.log(name, email, password);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, email, password);
+    if (!/[A-Z]/.test(password)) {
+      // console.log("There have at least one uppercase!");
+      setPassError("There have at least one uppercase!");
 
-  //   createUsers(email, password)
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      // console.log("There have at least one lowercase!");
+      setPassError("There have at least one lowercase!");
+      return;
+    }
+    if (!/.*\d{2,}$/.test(password)) {
+      // console.log("There have at least two digit at last");
+      setPassError("There have at least two digit at last");
+      return;
+    }
+    setPassError("");
+    registerUser(email, password);
+    // .then((result) => {
+    //   console.log(result);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+  };
   return (
     <HelmetProvider>
       <Helmet>
@@ -32,7 +50,7 @@ const Register = () => {
               <h1 className="text-5xl font-bold">Register now!</h1>
             </div>
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form className="card-body">
+              <form className="card-body" onSubmit={handleRegister}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Name</span>
@@ -80,6 +98,13 @@ const Register = () => {
                     className="input input-bordered"
                     required
                   />
+                </div>
+                <div
+                  className={
+                    passError ? "text-red-500 text-xs ml-1 mt-2" : "hidden"
+                  }
+                >
+                  {passError}
                 </div>
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Register</button>

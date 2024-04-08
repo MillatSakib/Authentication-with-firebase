@@ -1,27 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { AuthContext } from "./AuthProvider";
-const AuthContext = {};
-const Login = () => {
-  //   const { signInUser } = useContext(AuthContext);
-  //   const navigate = useNavigate();
-  //   const handleLogin = (e) => {
-  //     e.preventDefault();
-  //     const email = e.target.email.value;
-  //     const password = e.target.password.value;
-  //     console.log(email, password);
+import { AuthContext } from "../../AuthProvider";
 
-  //     signInUser(email, password)
-  //       .then((result) => {
-  //         console.log(result);
-  //         e.target.reset();
-  //         navigate("/");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+const Login = () => {
+  const [passError, setPassError] = useState("");
+  const { logInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    if (!/[A-Z]/.test(password)) {
+      // console.log("There have at least one uppercase!");
+      setPassError("There have at least one uppercase!");
+
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      // console.log("There have at least one lowercase!");
+      setPassError("There have at least one lowercase!");
+      return;
+    }
+    if (!/.*\d{2,}$/.test(password)) {
+      // console.log("There have at least two digit at last");
+      setPassError("There have at least two digit at last");
+      return;
+    }
+    setPassError("");
+    logInUser(email, password);
+    //       .then((result) => {
+    //         console.log(result);
+    //         e.target.reset();
+    //         navigate("/");
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+  };
   return (
     <HelmetProvider>
       <Helmet>
@@ -34,7 +51,7 @@ const Login = () => {
               <h1 className="text-5xl font-bold">Login now!</h1>
             </div>
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form className="card-body">
+              <form className="card-body" onSubmit={handleLogin}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -58,6 +75,13 @@ const Login = () => {
                     className="input input-bordered"
                     required
                   />
+                  <div
+                    className={
+                      passError ? "text-red-500 text-xs ml-1 mt-2" : "hidden"
+                    }
+                  >
+                    {passError}
+                  </div>
 
                   <button
                     onClick={() =>
@@ -91,6 +115,7 @@ const Login = () => {
                             name="forgotEmail"
                           />
                         </label>
+
                         <button className="btn my-10 btn-success text-white">
                           Submit
                         </button>
@@ -119,6 +144,28 @@ const Login = () => {
                   </NavLink>
                 </p>
               </form>
+            </div>
+
+            <div className="my-10 w-full">
+              <hr className="border-t-[1px] border-slate-400"></hr>
+              <button className="btn mt-6 mb-4 border-[1px] border-slate-400 w-full flex gap-4 max-w-[400px] mx-auto">
+                <span>
+                  <img
+                    src="https://i.ibb.co/GfwD09T/google.png"
+                    className="h-6 w-6"
+                  />
+                </span>{" "}
+                <span>Continue with Google</span>
+              </button>
+              <button className="btn border-[1px] border-slate-400 w-full flex gap-4  max-w-[400px] mx-auto">
+                <span>
+                  <img
+                    src="https://i.ibb.co/bR1nzwX/github.png"
+                    className="h-6 w-6"
+                  />
+                </span>{" "}
+                <span>Continue with Github</span>
+              </button>
             </div>
           </div>
         </div>
