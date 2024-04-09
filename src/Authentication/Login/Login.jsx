@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider";
 
 const Login = () => {
   const [passError, setPassError] = useState("");
-  const { logInUser, GoogleSignIn } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { logInUser, GoogleSignIn, user } = useContext(AuthContext);
+  // const location = useLocation();
+  // console.log(location);
+  // const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -39,6 +41,11 @@ const Login = () => {
     //         console.log(error);
     //       });
   };
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate(location.state);
+  //   }
+  // }, [user]);
   return (
     <HelmetProvider>
       <Helmet>

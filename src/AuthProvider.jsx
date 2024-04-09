@@ -15,6 +15,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // const [previousPath, setpreviousPath] = useState("");
   // console.log(children);
   const registerUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password).then(
@@ -56,6 +57,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(false);
+
     return signOut(auth);
   };
 
@@ -75,8 +77,11 @@ const AuthProvider = ({ children }) => {
         // console.log(currentUser);
         setUser(currentUser);
         setLoading(false);
+
+        // console.log("Loading is now ", loading);
       } else {
         // console.log("No user!!!");
+        setLoading(false);
         setUser(null);
       }
     });
