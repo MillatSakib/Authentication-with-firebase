@@ -5,7 +5,7 @@ import { AuthContext } from "../../AuthProvider";
 
 const Login = () => {
   const [passError, setPassError] = useState("");
-  const { logInUser } = useContext(AuthContext);
+  const { logInUser, GoogleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -148,7 +148,10 @@ const Login = () => {
 
             <div className="my-10 w-full">
               <hr className="border-t-[1px] border-slate-400"></hr>
-              <button className="btn mt-6 mb-4 border-[1px] border-slate-400 w-full flex gap-4 max-w-[400px] mx-auto">
+              <button
+                onClick={GoogleSignIn}
+                className="btn mt-6 mb-4 border-[1px] border-slate-400 w-full flex gap-4 max-w-[400px] mx-auto"
+              >
                 <span>
                   <img
                     src="https://i.ibb.co/GfwD09T/google.png"

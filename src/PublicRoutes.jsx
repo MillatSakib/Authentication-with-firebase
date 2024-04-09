@@ -4,6 +4,8 @@ import Home from "./Home/Home.jsx";
 import Login from "./Authentication/Login/Login.jsx";
 import Register from "./Authentication/Register/Register.jsx";
 import AppBody from "./AppBody.jsx";
+import PrivateRoutes from "./Routes/PrivateRoutes/PrivateRoutes.jsx";
+import About from "./About/About.jsx";
 const PublicRoutes = () => {
   const router = createBrowserRouter([
     {
@@ -21,6 +23,14 @@ const PublicRoutes = () => {
         {
           path: "/register",
           element: <Register></Register>,
+        },
+        {
+          path: "/about",
+          element: (
+            <PrivateRoutes>
+              <About></About>
+            </PrivateRoutes>
+          ),
         },
       ],
     },

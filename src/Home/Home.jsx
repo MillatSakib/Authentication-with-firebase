@@ -2,6 +2,8 @@ import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Home = () => {
+  // console.log(import.meta.env.VITE_SOME_KEY);  // Here I use environmet variable
+  // console.log(import.meta.env.VITE_MY_NAME);
   return (
     <HelmetProvider>
       <Helmet>
