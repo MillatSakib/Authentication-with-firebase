@@ -1,0 +1,34 @@
+=> firebase init
+
+=> use up and down arrow to select
+            "Hosting: Configure files for Firebase Hosting and (optionally) set up Github Action Deploy"
+
+    to select press "space bar on keyboard then press enter"
+
+=> select "Use an existing project"
+
+=> use up and down arror to to select project then press enter
+
+=> what do you want to use your public directory? dist
+
+=> Configure as a single-page app (rewrite all url to /index.html)? y
+
+=> Set up automatic builds and deploys with GitHub? (y/n) n
+
+=>npm run build
+
+=> firebase deploy.
+
+
+
+
+
+
+
+
+
+For update site=>
+
+ => npm run build
+
+ => firebase deploy
