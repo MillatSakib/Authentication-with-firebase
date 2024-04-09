@@ -6,6 +6,7 @@ import Register from "./Authentication/Register/Register.jsx";
 import AppBody from "./AppBody.jsx";
 import PrivateRoutes from "./Routes/PrivateRoutes/PrivateRoutes.jsx";
 import About from "./About/About.jsx";
+import PrivateRoutesAuth from "./Routes/PrivateRoutes/PrivateRoutesAuth.jsx";
 const PublicRoutes = () => {
   const router = createBrowserRouter([
     {
@@ -18,11 +19,19 @@ const PublicRoutes = () => {
         },
         {
           path: "/login",
-          element: <Login></Login>,
+          element: (
+            <PrivateRoutesAuth>
+              <Login></Login>
+            </PrivateRoutesAuth>
+          ),
         },
         {
           path: "/register",
-          element: <Register></Register>,
+          element: (
+            <PrivateRoutesAuth>
+              <Register></Register>
+            </PrivateRoutesAuth>
+          ),
         },
         {
           path: "/about",
