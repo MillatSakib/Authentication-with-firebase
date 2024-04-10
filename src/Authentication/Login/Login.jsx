@@ -5,7 +5,8 @@ import { AuthContext } from "../../AuthProvider";
 
 const Login = () => {
   const [passError, setPassError] = useState("");
-  const { logInUser, GoogleSignIn, user } = useContext(AuthContext);
+  const { logInUser, GoogleSignIn, user, githubSignIn, tweeterLogin } =
+    useContext(AuthContext);
   // const location = useLocation();
   // console.log(location);
   // const navigate = useNavigate();
@@ -167,7 +168,10 @@ const Login = () => {
                 </span>{" "}
                 <span>Continue with Google</span>
               </button>
-              <button className="btn border-[1px] border-slate-400 w-full flex gap-4  max-w-[400px] mx-auto">
+              <button
+                onClick={githubSignIn}
+                className="btn border-[1px] mb-4 border-slate-400 w-full flex gap-4  max-w-[400px] mx-auto"
+              >
                 <span>
                   <img
                     src="https://i.ibb.co/bR1nzwX/github.png"
@@ -175,6 +179,18 @@ const Login = () => {
                   />
                 </span>{" "}
                 <span>Continue with Github</span>
+              </button>
+              <button
+                onClick={tweeterLogin}
+                className="btn border-[1px] border-slate-400 w-full flex gap-4  max-w-[400px] mx-auto"
+              >
+                <span>
+                  <img
+                    src="https://i.ibb.co/dLGLw79/Logo-of-Twitter.png"
+                    className="h-6 w-6"
+                  />
+                </span>{" "}
+                <span>Continue with Twitter</span>
               </button>
             </div>
           </div>

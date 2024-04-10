@@ -10,3 +10,4 @@
 - Rechart
 - firebase
 - Helmet
+- React Hook form

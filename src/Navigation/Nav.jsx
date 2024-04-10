@@ -3,7 +3,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 
 const Nav = () => {
-  const { logOut } = useContext(AuthContext);
+  const { logOut, user } = useContext(AuthContext);
+  console.log(user?.photoURL);
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -88,6 +89,18 @@ const Nav = () => {
           <NavLink to="/register" className="btn btn-info text-white">
             Register
           </NavLink>
+          <div className="avatar">
+            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src={
+                  user?.photoURL
+                    ? user.photoURL
+                    : "https://millatsakib.github.io/Project-Resource/%E2%80%94Pngtree%E2%80%94cartoon%20color%20simple%20male%20avatar_5230557.png"
+                }
+              />
+              <div>{user?.photoURL}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
